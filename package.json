@@ -1,0 +1,35 @@
+{
+  "name": "resp",
+  "version": "1.0.0",
+  "description": "A responsive helper utility for css-in-js",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "yarn run build",
+    "build": "babel src/ --out-dir dist/"
+  },
+  "files": [
+    "dist/index.js",
+    "src/index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hamlim/resp.git"
+  },
+  "keywords": [
+    "css-in-js",
+    "responsive",
+    "utility"
+  ],
+  "author": "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hamlim/resp/issues"
+  },
+  "homepage": "https://github.com/hamlim/resp#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  }
+}
