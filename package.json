@@ -4,23 +4,16 @@
   "description": "A responsive helper utility for css-in-js",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "yarn run build && node dist/index.spec.js",
     "prepublish": "yarn run build",
     "build": "babel src/ --out-dir dist/"
   },
-  "files": [
-    "dist/index.js",
-    "src/index.js"
-  ],
+  "files": ["dist/index.js", "src/index.js"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hamlim/resp.git"
   },
-  "keywords": [
-    "css-in-js",
-    "responsive",
-    "utility"
-  ],
+  "keywords": ["css-in-js", "responsive", "utility"],
   "author": "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
   "license": "MIT",
   "bugs": {
