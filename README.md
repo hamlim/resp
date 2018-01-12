@@ -67,14 +67,11 @@ Using these basics we can build an even more advanced example:
 import resp from '@matthamlin/resp'
 import styled from 'react-emotion'
 
-const { small, medium, large } = resp(
-  {
-    small: 640,
-    medium: 800,
-    large: 1200,
-  },
-  16,
-)
+const { small, medium, large } = resp({
+  small: 640,
+  medium: 800,
+  large: 1200,
+})
 
 const Container = styled.div`
   color: red;
@@ -91,8 +88,12 @@ render(<Container bg="mediumseagreen">Hello World</Container>)
 
 ### Using Resp with Emotion
 
-See [this codesandbox link](https://codesandbox.io/s/xk7yj5ry4) for a simple example of using Resp with Emotion.
+See [this codesandbox link](https://codesandbox.io/s/xk7yj5ry4) for a simple example using Resp with Emotion.
 
 ### Using Resp with Styled-Components
 
-See [this codesandbox link](https://codesandbox.io/s/xzomwq46yq) for a simple example with Resp and Styled-Components.
+See [this codesandbox link](https://codesandbox.io/s/xzomwq46yq) for a simple example using Resp with Styled-Components.
+
+### Using Resp with Glamorous
+
+See [this codesandbox link](https://codesandbox.io/s/o5826rnzl5) for a simple example using Resp with Glamorous
