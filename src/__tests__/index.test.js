@@ -1,6 +1,6 @@
 import resp, {
   minWidthQueryFactory,
-  getMQValue,
+  getWidthValue,
 } from '../index.js'
 
 const breakpoints = {
@@ -35,7 +35,7 @@ test('accepts a media query factory argument', () => {
       ...interpolations
     ) => {
       return {
-        [`@media screen and (min-width: ${getMQValue({
+        [`@media screen and (min-width: ${getWidthValue({
           breakpoint,
           useRems: false,
         })})`]: strings,

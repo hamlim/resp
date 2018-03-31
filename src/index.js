@@ -1,4 +1,4 @@
-export const getMQValue = ({
+export const getWidthValue = ({
   breakpoint,
   useRems = true,
   fontSize = 16,
@@ -15,7 +15,7 @@ export const minWidthQueryFactory = ({ breakpoint }) => (
   ...interps
 ) => {
   if (Array.isArray(maybeStrings)) {
-    return `@media screen and (min-width: ${getMQValue({
+    return `@media screen and (min-width: ${getWidthValue({
       breakpoint,
     })}) { ${interps.reduce(
       (acc, interpolation, ndx) =>
@@ -24,7 +24,7 @@ export const minWidthQueryFactory = ({ breakpoint }) => (
     )} }`
   } else {
     return {
-      [`@media screen and (min-width: ${getMQValue({
+      [`@media screen and (min-width: ${getWidthValue({
         breakpoint,
       })})`]: maybeStrings,
     }
