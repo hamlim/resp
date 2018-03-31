@@ -1,27 +1,23 @@
 {
   "name": "@matthamlin/resp",
   "version": "2.0.0",
-  "description": "A responsive helper utility for css-in-js",
+  "description":
+    "A responsive helper utility for css-in-js",
   "main": "dist/index.js",
   "scripts": {
-    "test": "yarn run build && node dist/index.spec.js",
+    "test": "jest",
+    "t-w": "jest --watchAll",
     "prepublish": "yarn run build",
     "build": "babel src/ --out-dir dist/"
   },
-  "files": [
-    "dist/index.js",
-    "src/index.js"
-  ],
+  "files": ["dist/index.js", "src/index.js"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hamlim/resp.git"
   },
-  "keywords": [
-    "css-in-js",
-    "responsive",
-    "utility"
-  ],
-  "author": "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
+  "keywords": ["css-in-js", "responsive", "utility"],
+  "author":
+    "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hamlim/resp/issues"
@@ -30,6 +26,11 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1"
+    "babel-preset-env": "^1.6.1",
+    "jest": "22.4.3"
+  },
+  "dependencies": {},
+  "jest": {
+    "verbose": true
   }
 }
