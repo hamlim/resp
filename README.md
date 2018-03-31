@@ -6,6 +6,8 @@ A css-in-js utility for writing responsive styles.
 
 Resp is designed to be used along with a css-in-js library, however it can be used anywhere you would like to generate styles scoped to media queries.
 
+By default Resp generates `min-width` media queries using `rems`. However you can customize the kind of media queries that resp generates by passing in a `mediaQueryFactory` function. See the [API](#API) section below for more.
+
 Resp is a function that takes in two arguments, the first is an object with keys of the breakpoint names `small, medium, large` for example, and values of the pixel breakpoints that each of those labels applies to. The second argument which is optional is the root font size, this is used to determine the breakpoint in rems.
 
 ```javascript
@@ -54,10 +56,10 @@ Using these styles is as simple as providing this content as children to a style
 
 ```javascript
 render(
-  <div>
+  <React.Fragment>
     <h1 className="title">Hello</h1>
     <style>{small`.title { color: green; }`}</style>
-  </div>,
+  </React.Fragment>,
 )
 ```
 
@@ -83,7 +85,9 @@ const Container = styled.div`
   `};
 `
 
-render(<Container bg="mediumseagreen">Hello World</Container>)
+render(
+  <Container bg="mediumseagreen">Hello World</Container>,
+)
 ```
 
 ### Using Resp with Emotion
@@ -97,3 +101,41 @@ See [this codesandbox link](https://codesandbox.io/s/xzomwq46yq) for a simple ex
 ### Using Resp with Glamorous
 
 See [this codesandbox link](https://codesandbox.io/s/o5826rnzl5) for a simple example using Resp with Glamorous
+
+### API
+
+Resp exports a default function that accepts an object maping names to pixel breakpoint values. However it can be customized by passing in the optional second argument:
+
+```js
+import resp from '@matthamlin/resp'
+
+const result = resp(
+  {
+    print: 'print',
+    screen: 'screen',
+  },
+  {
+    mediaQueryFactory: ({ breakpoints }) => (
+      strings,
+      ...interpolations
+    ) => {
+      return `@media only ${breakpoint} { ${interpolations.reduce(
+        (acc, interpolation, ndx) =>
+          `${acc}${interpolation}${strings[ndx + 1]}`,
+        strings[0],
+      )} }`
+    },
+  },
+)
+
+/**
+ * result = {
+ *   print: (...) => `@media only print { ... }`,
+ *   screen: (...) => `@media only screen { ... }`
+ * }
+ */
+```
+
+In the above example resp will generate print and screen based media queries.
+
+The `mediaQueryFactory` function is a higher order function that accepts an object called with the breakpoint, and then returns a function that accepts one primary argument and then a spread of other values (assuming that it is used in a template literal use). If the first argument of the returned function isn't an array then it is being used as an object.
