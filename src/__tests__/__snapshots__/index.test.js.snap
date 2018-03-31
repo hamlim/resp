@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`accepts a media query factory argument 1`] = `"@media screen and (min-width: 360px)"`;
+
+exports[`calling a handler returns the expected mq string 1`] = `"@media screen and (min-width: 50rem) { color: red; }"`;
