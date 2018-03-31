@@ -1,4 +1,7 @@
-import resp from '../index.js'
+import resp, {
+  minWidthQueryFactory,
+  getMQValue,
+} from '../index.js'
 
 const breakpoints = {
   small: 360,
@@ -25,13 +28,32 @@ test('calling a handler returns the expected mq string', () => {
   expect(result).toMatchSnapshot()
 })
 
-test('accepts addition argument to configure return types', () => {
+test('accepts a media query factory argument', () => {
   const breakpointHandlers = resp(breakpoints, {
-    useRems: false,
+    mediaQueryFactory: ({ breakpoint }) => (
+      strings,
+      ...interpolations
+    ) => {
+      return {
+        [`@media screen and (min-width: ${getMQValue({
+          breakpoint,
+          useRems: false,
+        })})`]: strings,
+      }
+    },
   })
   const expectedKey = '@media screen and (min-width: 360px)'
   const expected = { [expectedKey]: { color: 'red' } }
   const result = breakpointHandlers.small({ color: 'red' })
   expect(Object.keys(result)[0]).toMatchSnapshot()
   expect(typeof result).toBe('object')
+})
+
+test('minWidthQueryFactory returns a function when called initial params', () => {
+  const mediaQuery = minWidthQueryFactory({
+    breakpoint: 300,
+    fontSize: 16,
+    useRems: true,
+  })
+  expect(typeof mediaQuery).toBe('function')
 })
